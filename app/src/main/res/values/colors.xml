@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Paleta tomada del proyecto web original (logo: terracota, crema y negro) -->
+    <color name="bg">#0D0C0A</color>
+    <color name="bg_alt">#17140F</color>
+    <color name="surface">#1B1712</color>
+    <color name="surface_light">#241F18</color>
+    <color name="text_primary">#F4EEE2</color>
+    <color name="text_muted">#ACA090</color>
+    <color name="primary">#DE9B45</color>
+    <color name="primary_dark">#C87F27</color>
+    <color name="primary_soft">#26DE9B45</color>
+    <color name="border">#2C2620</color>
+    <color name="success">#7FBE8A</color>
+    <color name="success_bg">#1F7FBE8A</color>
+    <color name="warning">#E0B15C</color>
+    <color name="warning_bg">#1FE0B15C</color>
+    <color name="danger">#E08A72</color>
+    <color name="danger_bg">#1FE08A72</color>
+    <color name="whatsapp">#3FCE71</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+</resources>

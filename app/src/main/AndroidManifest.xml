@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".RFraganciasApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:theme="@style/Theme.RFragancias"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".ui.auth.LoginActivity"
+            android:exported="true"
+            android:label="@string/titulo_login"
+            android:theme="@style/Theme.RFragancias">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.auth.RegistroActivity"
+            android:exported="false"
+            android:label="@string/titulo_registro" />
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.RFragancias" />
+
+        <activity
+            android:name=".ui.admin.AdminDashboardActivity"
+            android:exported="false"
+            android:label="@string/titulo_admin" />
+
+        <activity
+            android:name=".ui.admin.PerfumesActivity"
+            android:exported="false"
+            android:label="@string/titulo_perfumes" />
+
+        <activity
+            android:name=".ui.admin.PerfumeFormActivity"
+            android:exported="false"
+            android:label="@string/titulo_perfume_form" />
+
+        <activity
+            android:name=".ui.admin.ClientesActivity"
+            android:exported="false"
+            android:label="@string/titulo_clientes" />
+
+        <activity
+            android:name=".ui.admin.ClienteDetalleActivity"
+            android:exported="false"
+            android:label="@string/titulo_cliente_detalle" />
+
+        <activity
+            android:name=".ui.admin.VentasActivity"
+            android:exported="false"
+            android:label="@string/titulo_ventas" />
+
+        <activity
+            android:name=".ui.admin.VentaFormActivity"
+            android:exported="false"
+            android:label="@string/registrar_venta" />
+
+        <activity
+            android:name=".ui.admin.PedidosActivity"
+            android:exported="false"
+            android:label="@string/titulo_pedidos" />
+
+        <activity
+            android:name=".ui.admin.PedidoFormActivity"
+            android:exported="false"
+            android:label="@string/registrar_pedido" />
+
+        <activity
+            android:name=".ui.catalogo.PerfumeDetalleActivity"
+            android:exported="false"
+            android:label="@string/titulo_perfume_detalle" />
+
+    </application>
+
+</manifest>

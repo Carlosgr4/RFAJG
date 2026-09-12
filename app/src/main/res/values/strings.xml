@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">R FRAGANCIAS</string>
+
+    <!-- Navegación -->
+    <string name="nav_catalogo">Catálogo</string>
+    <string name="nav_admin">Admin</string>
+    <string name="nav_carrito">Carrito</string>
+
+    <!-- Catálogo -->
+    <string name="eyebrow_catalogo">Perfumería de autor</string>
+    <string name="titulo_catalogo">Fragancias con carácter, hechas para durar</string>
+    <string name="subtitulo_catalogo">Explora el catálogo por diseñador, género o notas olfativas. Si tienes dudas, escríbenos por WhatsApp.</string>
+    <string name="hint_buscar">Buscar por nombre, diseñador o notas…</string>
+    <string name="filtro_todos">Todos</string>
+    <string name="filtro_femenino">Femenino</string>
+    <string name="filtro_masculino">Masculino</string>
+    <string name="filtro_unisex">Unisex</string>
+    <string name="btn_whatsapp">Escríbenos por WhatsApp</string>
+    <string name="whatsapp_numero">573505737713</string>
+    <string name="catalogo_vacio">No encontramos perfumes con esos filtros.</string>
+    <string name="titulo_perfume_detalle">Detalle del perfume</string>
+
+    <!-- Login / Registro -->
+    <string name="titulo_login">Iniciar sesión</string>
+    <string name="login_subtitulo">Ingresa con tu correo (o usuario, si eres administrador) y tu contraseña.</string>
+    <string name="hint_usuario">Correo o usuario</string>
+    <string name="hint_clave">Contraseña</string>
+    <string name="btn_ingresar">Ingresar</string>
+    <string name="error_credenciales">Usuario/correo o contraseña incorrectos</string>
+    <string name="error_campos_obligatorios">Todos los campos son obligatorios</string>
+    <string name="link_crear_cuenta">¿No tienes cuenta? Regístrate</string>
+    <string name="link_ya_tengo_cuenta">¿Ya tienes cuenta? Inicia sesión</string>
+
+    <string name="titulo_registro">Crear cuenta</string>
+    <string name="registro_subtitulo">Regístrate para ver el catálogo y armar tus pedidos.</string>
+    <string name="hint_nombre_completo">Nombre completo</string>
+    <string name="hint_telefono_registro">Teléfono</string>
+    <string name="hint_correo">Correo electrónico</string>
+    <string name="hint_clave_registro">Contraseña</string>
+    <string name="btn_crear_cuenta">Crear cuenta</string>
+    <string name="error_registro">No se pudo crear la cuenta. Intenta de nuevo.</string>
+    <string name="error_correo_registrado">Ese correo ya está registrado</string>
+    <string name="error_correo_invalido">Ingresa un correo válido</string>
+    <string name="error_clave_corta">La contraseña debe tener al menos 6 caracteres</string>
+
+    <!-- Admin -->
+    <string name="titulo_admin">Panel de administración</string>
+    <string name="admin_bienvenida">Bienvenido de vuelta</string>
+    <string name="btn_cerrar_sesion">Cerrar sesión</string>
+    <string name="card_perfumes">Catálogo</string>
+    <string name="card_clientes">Clientes</string>
+    <string name="card_ventas">Ventas</string>
+    <string name="card_pedidos">Pedidos de materia prima</string>
+    <string name="resumen_total_perfumes">Perfumes activos</string>
+    <string name="resumen_total_clientes">Clientes</string>
+    <string name="resumen_ventas_mes">Ventas del mes</string>
+    <string name="resumen_deuda_total">Deuda total</string>
+    <string name="resumen_pedidos_pendientes">Pedidos pendientes</string>
+    <string name="resumen_stock_bajo">Perfumes con stock bajo</string>
+
+    <!-- Perfumes admin -->
+    <string name="titulo_perfumes">Catálogo (Admin)</string>
+    <string name="titulo_perfume_form">Perfume</string>
+    <string name="hint_nombre">Nombre</string>
+    <string name="hint_disenador">Diseñador</string>
+    <string name="hint_genero">Género</string>
+    <string name="hint_notas">Notas olfativas</string>
+    <string name="hint_precio">Precio</string>
+    <string name="hint_gramos">Gramos disponibles</string>
+    <string name="btn_guardar">Guardar</string>
+    <string name="btn_elegir_foto">Elegir foto</string>
+    <string name="btn_eliminar">Eliminar</string>
+    <string name="btn_editar">Editar</string>
+    <string name="confirmar_eliminar_perfume">¿Eliminar este perfume del catálogo?</string>
+    <string name="perfume_guardado">Perfume guardado</string>
+
+    <!-- Clientes admin -->
+    <string name="titulo_clientes">Clientes</string>
+    <string name="titulo_cliente_detalle">Detalle del cliente</string>
+    <string name="hint_telefono">Teléfono</string>
+    <string name="hint_email">Correo</string>
+    <string name="hint_notas_cliente">Notas</string>
+    <string name="cliente_deuda">Deuda</string>
+    <string name="cliente_total_compras">Compras</string>
+    <string name="btn_registrar_abono">Registrar abono</string>
+    <string name="hint_monto_abono">Monto del abono</string>
+    <string name="confirmar_eliminar_cliente">¿Eliminar este cliente?</string>
+
+    <!-- Ventas admin -->
+    <string name="titulo_ventas">Ventas</string>
+    <string name="hint_cliente">Cliente (opcional)</string>
+    <string name="hint_perfume">Perfume (opcional)</string>
+    <string name="hint_cantidad_ml">Cantidad (ml)</string>
+    <string name="hint_total">Total</string>
+    <string name="hint_estado">Estado</string>
+    <string name="registrar_venta">Registrar venta</string>
+    <string name="confirmar_eliminar_venta">¿Eliminar esta venta?</string>
+
+    <!-- Pedidos admin -->
+    <string name="titulo_pedidos">Pedidos de materia prima</string>
+    <string name="hint_insumo">Insumo</string>
+    <string name="hint_proveedor">Proveedor</string>
+    <string name="hint_cantidad_gramos">Cantidad (g)</string>
+    <string name="hint_costo">Costo</string>
+    <string name="registrar_pedido">Registrar pedido</string>
+    <string name="confirmar_eliminar_pedido">¿Eliminar este pedido?</string>
+
+    <!-- Genéricos -->
+    <string name="cancelar">Cancelar</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cargando">Cargando…</string>
+    <string name="error_generico">Ocurrió un error. Intenta de nuevo.</string>
+    <string name="error_conexion">No se pudo conectar con el servidor. Revisa la URL del backend y tu conexión.</string>
+    <string name="sin_datos">Todavía no hay información aquí.</string>
+    <string name="agregar">Agregar</string>
+
+    <!-- Carrito -->
+    <string name="titulo_carrito">Tu carrito</string>
+    <string name="carrito_vacio">Todavía no has agregado perfumes a tu carrito.</string>
+    <string name="btn_agregar_carrito">Agregar al carrito</string>
+    <string name="perfume_agregado_carrito">Se agregó a tu carrito</string>
+    <string name="carrito_total">Total</string>
+    <string name="btn_confirmar_pedido">Confirmar pedido por WhatsApp</string>
+    <string name="confirmar_cerrar_sesion">¿Cerrar sesión?</string>
+    <string name="descripcion_cerrar_sesion">Cerrar sesión</string>
+</resources>
