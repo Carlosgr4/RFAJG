@@ -18,8 +18,8 @@
             android:orientation="vertical"
             android:background="@color/surface"
             android:paddingHorizontal="@dimen/padding_screen"
-            android:paddingTop="28dp"
-            android:paddingBottom="20dp">
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/titulo_ubicacion"
                 style="@style/TextDisplay" />
         </LinearLayout>
@@ -91,14 +91,15 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/local_horario"
                 style="@style/TextBodyMuted" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_como_llegar"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
                 android:layout_marginTop="@dimen/spacing_md"
                 android:text="@string/btn_como_llegar"
                 app:icon="@drawable/ic_directions"
@@ -108,7 +109,8 @@
                 android:id="@+id/btn_abrir_maps"
                 style="@style/Widget.RFragancias.Button.Outlined"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
                 android:layout_marginTop="@dimen/spacing_sm"
                 android:text="@string/btn_abrir_maps" />
         </LinearLayout>

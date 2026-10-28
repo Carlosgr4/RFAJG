@@ -16,6 +16,10 @@ import kotlinx.coroutines.launch
 import android.content.Intent
 import android.util.Patterns
 import com.rfragancias.app.utils.mensajeDeError
+import com.rfragancias.app.utils.validarObligatorios
+import com.rfragancias.app.utils.validarNumeros
+import com.rfragancias.app.utils.limpiarErrorAlEscribir
+import com.rfragancias.app.utils.mostrarErrorCampo
 
 /**
  * Registro de un cliente nuevo. Pide nombre, teléfono, correo y
@@ -38,6 +42,7 @@ class RegistroActivity : AppCompatActivity() {
         val editTelefono = findViewById<TextInputEditText>(R.id.edit_telefono)
         val editCorreo = findViewById<TextInputEditText>(R.id.edit_correo)
         val editPassword = findViewById<TextInputEditText>(R.id.edit_password)
+        listOf(editNombre, editTelefono, editCorreo, editPassword).forEach { it.limpiarErrorAlEscribir() }
         val textoError = findViewById<android.widget.TextView>(R.id.texto_error)
         val progress = findViewById<View>(R.id.progress_registro)
         val btnCrear = findViewById<MaterialButton>(R.id.btn_crear_cuenta)
@@ -51,16 +56,18 @@ class RegistroActivity : AppCompatActivity() {
             val correo = editCorreo.text?.toString()?.trim().orEmpty()
             val password = editPassword.text?.toString()?.trim().orEmpty()
 
-            if (nombre.isEmpty() || telefono.isEmpty() || correo.isEmpty() || password.isEmpty()) {
-                mostrarError(textoError, getString(R.string.error_campos_obligatorios))
+            if (!validarObligatorios(editNombre, editTelefono, editCorreo, editPassword)) {
+                textoError.visibility = View.GONE
                 return@setOnClickListener
             }
             if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
-                mostrarError(textoError, getString(R.string.error_correo_invalido))
+                editCorreo.mostrarErrorCampo(getString(R.string.error_correo_invalido))
+                editCorreo.requestFocus()
                 return@setOnClickListener
             }
             if (password.length < 6) {
-                mostrarError(textoError, getString(R.string.error_clave_corta))
+                editPassword.mostrarErrorCampo(getString(R.string.error_clave_corta))
+                editPassword.requestFocus()
                 return@setOnClickListener
             }
 

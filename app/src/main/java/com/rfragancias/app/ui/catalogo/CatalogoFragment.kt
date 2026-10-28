@@ -81,6 +81,25 @@ class CatalogoFragment : Fragment(R.layout.fragment_catalogo) {
 
         view.findViewById<View>(R.id.btn_whatsapp_contacto).setOnClickListener { abrirWhatsApp() }
         view.findViewById<View>(R.id.fab_whatsapp).setOnClickListener { abrirWhatsApp() }
+        view.findViewById<View>(R.id.btn_reintentar_catalogo).setOnClickListener {
+            // Limpia filtros y búsqueda para volver a mostrar todo el catálogo
+            filtroSeleccionado = ""
+            editBuscar.setText("")
+            construirFiltros()
+            cargarPerfumes()
+        }
+
+        // Alternativa con botón al gesto de deslizar para actualizar
+        requireActivity().addMenuProvider(object : androidx.core.view.MenuProvider {
+            override fun onCreateMenu(menu: android.view.Menu, menuInflater: android.view.MenuInflater) {
+                menuInflater.inflate(R.menu.menu_lista, menu)
+            }
+            override fun onMenuItemSelected(menuItem: android.view.MenuItem): Boolean {
+                if (menuItem.itemId != R.id.accion_actualizar) return false
+                cargarPerfumes()
+                return true
+            }
+        }, viewLifecycleOwner, androidx.lifecycle.Lifecycle.State.RESUMED)
 
         cargarPerfumes()
     }

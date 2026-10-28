@@ -48,6 +48,7 @@ class PerfumeAdapter(
             textoDisenador.text = perfume.disenador ?: ""
             textoNotas.text = perfume.notas ?: ""
             badgeGenero.text = perfume.genero
+            img.contentDescription = img.context.getString(R.string.cd_foto_de, perfume.nombre)
 
             Glide.with(img.context)
                 .load(urlImagenCompleta(perfume.imagenUrl))

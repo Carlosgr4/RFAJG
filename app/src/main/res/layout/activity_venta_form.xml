@@ -70,6 +70,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_cantidad_ml"
+                        android:imeOptions="actionNext"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
@@ -86,6 +87,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_total"
+                        android:imeOptions="actionNext"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
@@ -116,6 +118,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_notas"
+                    android:imeOptions="actionDone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minLines="2"
@@ -126,7 +129,8 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_guardar"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
                 android:layout_marginTop="@dimen/spacing_lg"
                 android:text="@string/registrar_venta" />
 

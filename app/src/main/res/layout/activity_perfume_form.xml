@@ -40,6 +40,7 @@
                     android:id="@+id/img_preview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:contentDescription="@string/cd_foto_perfume"
                     android:scaleType="fitCenter" />
 
                 <ImageView
@@ -48,13 +49,15 @@
                     android:layout_height="28dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_photo"
+                    android:contentDescription="@null"
+                    android:importantForAccessibility="no"
                     app:tint="@color/text_muted" />
             </FrameLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:text="@string/btn_elegir_foto"
                 style="@style/TextBodyMuted" />
@@ -67,6 +70,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_nombre"
+                    android:imeOptions="actionNext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_nombre" />
@@ -80,6 +84,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_disenador"
+                    android:imeOptions="actionNext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_disenador" />
@@ -108,6 +113,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_notas"
+                    android:imeOptions="actionNext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minLines="2"
@@ -130,6 +136,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_precio"
+                        android:imeOptions="actionNext"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
@@ -146,6 +153,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_gramos"
+                        android:imeOptions="actionDone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
@@ -165,7 +173,8 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_guardar"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
                 android:layout_marginTop="@dimen/spacing_lg"
                 android:text="@string/btn_guardar" />
 

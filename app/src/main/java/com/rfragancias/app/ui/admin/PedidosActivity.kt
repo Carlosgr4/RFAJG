@@ -35,6 +35,12 @@ class PedidosActivity : AppCompatActivity() {
 
         swipeRefresh = findViewById(R.id.swipe_refresh)
         estadoVacio = findViewById(R.id.estado_vacio)
+        findViewById<View>(R.id.btn_reintentar).setOnClickListener { cargarPedidos() }
+        // Alternativa con botón al gesto de deslizar para actualizar
+        toolbar.inflateMenu(R.menu.menu_lista)
+        toolbar.setOnMenuItemClickListener { item ->
+            if (item.itemId == R.id.accion_actualizar) { swipeRefresh.isRefreshing = true; cargarPedidos(); true } else false
+        }
         progress = findViewById(R.id.progress_lista)
 
         val recycler = findViewById<RecyclerView>(R.id.recycler_lista)

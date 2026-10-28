@@ -14,6 +14,10 @@ import com.rfragancias.app.network.ApiClient
 import com.rfragancias.app.utils.mostrarToast
 import kotlinx.coroutines.launch
 import com.rfragancias.app.utils.mensajeDeError
+import com.rfragancias.app.utils.validarObligatorios
+import com.rfragancias.app.utils.validarNumeros
+import com.rfragancias.app.utils.limpiarErrorAlEscribir
+import com.rfragancias.app.utils.mostrarErrorCampo
 
 class PedidoFormActivity : AppCompatActivity() {
 
@@ -37,6 +41,7 @@ class PedidoFormActivity : AppCompatActivity() {
         editProveedor = findViewById(R.id.edit_proveedor)
         editCantidad = findViewById(R.id.edit_cantidad_gramos)
         editCosto = findViewById(R.id.edit_costo)
+        listOf(editInsumo, editCantidad, editCosto).forEach { it.limpiarErrorAlEscribir() }
         spinnerEstado = findViewById(R.id.spinner_estado)
         progress = findViewById(R.id.progress_form)
         btnGuardar = findViewById(R.id.btn_guardar)
@@ -52,10 +57,8 @@ class PedidoFormActivity : AppCompatActivity() {
         val insumo = editInsumo.text?.toString()?.trim().orEmpty()
         val costo = editCosto.text?.toString()?.trim().orEmpty()
 
-        if (insumo.isEmpty()) {
-            mostrarToast(getString(R.string.error_campos_obligatorios))
-            return
-        }
+        if (!validarObligatorios(editInsumo)) return
+        if (!validarNumeros(editCantidad, editCosto)) return
 
         val datos = mapOf(
             "insumo" to insumo,

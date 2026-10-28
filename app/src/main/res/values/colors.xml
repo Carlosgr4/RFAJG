@@ -17,7 +17,11 @@
     <color name="warning_bg">#1FE0B15C</color>
     <color name="danger">#E08A72</color>
     <color name="danger_bg">#1FE08A72</color>
-    <color name="whatsapp">#3FCE71</color>
+    <!-- Verde oscuro: el blanco sobre él da 5.4:1 (WCAG AA). El #3FCE71 original daba 2.0:1. -->
+    <color name="whatsapp">#0F7A3E</color>
+    <!-- Borde de campos de texto: 4.4:1 sobre surface y 3.9:1 sobre bg (WCAG 1.4.11 pide 3:1) -->
+    <color name="border_input">#8A7D6B</color>
+    <color name="error">#E08A72</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>

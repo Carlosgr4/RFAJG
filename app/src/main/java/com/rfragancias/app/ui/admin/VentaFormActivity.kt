@@ -16,6 +16,10 @@ import com.rfragancias.app.network.ApiClient
 import com.rfragancias.app.utils.mostrarToast
 import kotlinx.coroutines.launch
 import com.rfragancias.app.utils.mensajeDeError
+import com.rfragancias.app.utils.validarObligatorios
+import com.rfragancias.app.utils.validarNumeros
+import com.rfragancias.app.utils.limpiarErrorAlEscribir
+import com.rfragancias.app.utils.mostrarErrorCampo
 
 class VentaFormActivity : AppCompatActivity() {
 
@@ -43,6 +47,7 @@ class VentaFormActivity : AppCompatActivity() {
         spinnerEstado = findViewById(R.id.spinner_estado)
         editCantidadMl = findViewById(R.id.edit_cantidad_ml)
         editTotal = findViewById(R.id.edit_total)
+        listOf(editCantidadMl, editTotal).forEach { it.limpiarErrorAlEscribir() }
         editNotas = findViewById(R.id.edit_notas)
         progress = findViewById(R.id.progress_form)
         btnGuardar = findViewById(R.id.btn_guardar)
@@ -82,10 +87,8 @@ class VentaFormActivity : AppCompatActivity() {
         val cantidadMl = editCantidadMl.text?.toString()?.trim().orEmpty()
         val total = editTotal.text?.toString()?.trim().orEmpty()
 
-        if (total.isEmpty()) {
-            mostrarToast(getString(R.string.error_campos_obligatorios))
-            return
-        }
+        if (!validarObligatorios(editTotal)) return
+        if (!validarNumeros(editCantidadMl, editTotal)) return
 
         val clienteSeleccionado = clientes.getOrNull(spinnerCliente.selectedItemPosition - 1)
         val perfumeSeleccionado = perfumes.getOrNull(spinnerPerfume.selectedItemPosition - 1)

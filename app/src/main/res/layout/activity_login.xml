@@ -28,13 +28,13 @@
         <View
             android:layout_width="120dp"
             android:layout_height="1dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/bg_divider_gold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:text="@string/eyebrow_catalogo"
             android:textColor="@color/text_muted"
             android:textSize="12sp"
@@ -45,11 +45,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/bg_login_card"
             android:elevation="6dp"
             android:orientation="vertical"
-            android:padding="22dp">
+            android:padding="24dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -61,7 +61,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/login_subtitulo"
                 android:lineSpacingExtra="2dp"
                 style="@style/TextBodyMuted" />
@@ -70,7 +70,7 @@
                 android:id="@+id/layout_usuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="24dp"
                 app:boxBackgroundColor="@color/bg_alt"
                 app:startIconDrawable="@drawable/ic_person"
                 app:startIconTint="@color/primary"
@@ -78,6 +78,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_usuario"
+                    android:imeOptions="actionNext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_usuario"
@@ -89,7 +90,7 @@
                 android:id="@+id/layout_clave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="16dp"
                 app:boxBackgroundColor="@color/bg_alt"
                 app:startIconDrawable="@drawable/ic_lock"
                 app:startIconTint="@color/primary"
@@ -99,6 +100,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_clave"
+                    android:imeOptions="actionDone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_clave"
@@ -123,8 +125,9 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_login"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="22dp"
+                android:layout_height="wrap_content"
+                android:minHeight="56dp"
+                android:layout_marginTop="24dp"
                 android:text="@string/btn_ingresar"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -136,7 +139,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="16dp"
                 android:indeterminateTint="@color/primary"
                 android:visibility="gone" />
         </LinearLayout>
@@ -145,12 +148,12 @@
             android:id="@+id/link_crear_cuenta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="24dp"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
-            android:padding="10dp"
+            android:padding="8dp"
             android:text="@string/link_crear_cuenta"
             android:textColor="@color/primary"
             android:textSize="15sp"

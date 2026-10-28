@@ -46,6 +46,8 @@ class PerfumeAdminAdapter(
         holder.itemView.setOnClickListener { alEditar(perfume) }
         holder.btnEditar.setOnClickListener { alEditar(perfume) }
         holder.btnEliminar.setOnClickListener { alEliminar(perfume) }
+        holder.btnEditar.contentDescription = "Editar ${perfume.nombre}"
+        holder.btnEliminar.contentDescription = "Eliminar ${perfume.nombre}"
     }
 
     override fun getItemCount(): Int = items.size

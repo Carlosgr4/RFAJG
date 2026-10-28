@@ -142,4 +142,23 @@
     <string name="btn_confirmar_pedido">Confirmar pedido por WhatsApp</string>
     <string name="confirmar_cerrar_sesion">¿Cerrar sesión?</string>
     <string name="descripcion_cerrar_sesion">Cerrar sesión</string>
+
+    <!-- Accesibilidad (auditoría #17) -->
+    <string name="cd_editar_perfume">Editar perfume</string>
+    <string name="cd_eliminar_perfume">Eliminar perfume</string>
+    <string name="cd_eliminar_venta">Eliminar venta</string>
+    <string name="cd_eliminar_pedido">Eliminar pedido</string>
+    <string name="cd_restar">Disminuir cantidad</string>
+    <string name="cd_sumar">Aumentar cantidad</string>
+    <string name="cd_quitar_carrito">Quitar del carrito</string>
+    <string name="cd_foto_perfume">Foto del perfume</string>
+    <string name="cd_foto_de">Foto de %1$s</string>
+    <string name="cd_whatsapp">Escribir por WhatsApp</string>
+    <string name="cd_agregar">Agregar nuevo</string>
+
+    <!-- Estados y errores por campo (auditoría #10, #12, #13, #19) -->
+    <string name="btn_actualizar">Actualizar</string>
+    <string name="error_campo_obligatorio">Este campo es obligatorio</string>
+    <string name="error_numero_invalido">Escribe un número válido</string>
+    <string name="eliminado_ok">%1$s eliminado</string>
 </resources>

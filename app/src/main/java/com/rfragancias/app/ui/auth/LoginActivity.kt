@@ -17,6 +17,10 @@ import com.rfragancias.app.network.SessionManager
 import com.rfragancias.app.ui.MainActivity
 import kotlinx.coroutines.launch
 import com.rfragancias.app.utils.mensajeDeError
+import com.rfragancias.app.utils.validarObligatorios
+import com.rfragancias.app.utils.validarNumeros
+import com.rfragancias.app.utils.limpiarErrorAlEscribir
+import com.rfragancias.app.utils.mostrarErrorCampo
 
 /**
  * Pantalla de inicio de la app. Un solo formulario sirve tanto para
@@ -49,6 +53,7 @@ class LoginActivity : AppCompatActivity() {
 
         val editUsuario = findViewById<TextInputEditText>(R.id.edit_usuario)
         val editClave = findViewById<TextInputEditText>(R.id.edit_clave)
+        listOf(editUsuario, editClave).forEach { it.limpiarErrorAlEscribir() }
         val textoError = findViewById<android.widget.TextView>(R.id.texto_error)
         val progress = findViewById<View>(R.id.progress_login)
         val btnLogin = findViewById<MaterialButton>(R.id.btn_login)
@@ -62,9 +67,8 @@ class LoginActivity : AppCompatActivity() {
             val usuario = editUsuario.text?.toString()?.trim().orEmpty()
             val clave = editClave.text?.toString()?.trim().orEmpty()
 
-            if (usuario.isEmpty() || clave.isEmpty()) {
-                textoError.text = getString(R.string.error_campos_obligatorios)
-                textoError.visibility = View.VISIBLE
+            if (!validarObligatorios(editUsuario, editClave)) {
+                textoError.visibility = View.GONE
                 return@setOnClickListener
             }
 

@@ -26,6 +26,10 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.FileOutputStream
 import com.rfragancias.app.utils.mensajeDeError
+import com.rfragancias.app.utils.validarObligatorios
+import com.rfragancias.app.utils.validarNumeros
+import com.rfragancias.app.utils.limpiarErrorAlEscribir
+import com.rfragancias.app.utils.mostrarErrorCampo
 
 class PerfumeFormActivity : AppCompatActivity() {
 
@@ -66,6 +70,7 @@ class PerfumeFormActivity : AppCompatActivity() {
         editNotas = findViewById(R.id.edit_notas)
         editPrecio = findViewById(R.id.edit_precio)
         editGramos = findViewById(R.id.edit_gramos)
+        listOf(editNombre, editPrecio, editGramos).forEach { it.limpiarErrorAlEscribir() }
         spinnerGenero = findViewById(R.id.spinner_genero)
         switchActivo = findViewById(R.id.switch_activo)
         imgPreview = findViewById(R.id.img_preview)
@@ -121,10 +126,8 @@ class PerfumeFormActivity : AppCompatActivity() {
         val precio = editPrecio.text?.toString()?.trim().orEmpty()
         val gramos = editGramos.text?.toString()?.trim().orEmpty()
 
-        if (nombre.isEmpty() || precio.isEmpty() || gramos.isEmpty()) {
-            mostrarToast(getString(R.string.error_campos_obligatorios))
-            return
-        }
+        if (!validarObligatorios(editNombre, editPrecio, editGramos)) return
+        if (!validarNumeros(editPrecio, editGramos)) return
 
         progress.visibility = View.VISIBLE
         btnGuardar.isEnabled = false

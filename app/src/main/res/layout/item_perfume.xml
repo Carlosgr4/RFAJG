@@ -16,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bg_image_placeholder"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/cd_foto_perfume" />
 
         <TextView
             android:id="@+id/badge_genero"
@@ -26,7 +27,7 @@
             android:layout_margin="8dp"
             android:background="@drawable/bg_badge_success"
             android:paddingHorizontal="8dp"
-            android:paddingVertical="3dp"
+            android:paddingVertical="4dp"
             android:text="Unisex"
             android:textColor="@color/text_primary"
             android:textSize="11sp" />
@@ -75,9 +76,8 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:minHeight="0dp"
-            android:paddingVertical="4dp"
+            android:layout_marginTop="8dp"
+            android:minHeight="48dp"
             android:text="@string/agregar"
             android:textColor="@color/primary"
             android:textSize="12sp"

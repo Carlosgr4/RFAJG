@@ -12,8 +12,8 @@
         android:orientation="vertical"
         android:background="@color/surface"
         android:paddingHorizontal="@dimen/padding_screen"
-        android:paddingTop="28dp"
-        android:paddingBottom="20dp">
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="8dp"
             android:text="@string/titulo_carrito"
             android:textSize="26sp"
             style="@style/TextDisplay" />
@@ -85,7 +85,8 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_confirmar_pedido"
             android:layout_width="match_parent"
-            android:layout_height="52dp"
+            android:layout_height="wrap_content"
+                android:minHeight="52dp"
             android:backgroundTint="@color/whatsapp"
             android:text="@string/btn_confirmar_pedido"
             android:textColor="@color/white"

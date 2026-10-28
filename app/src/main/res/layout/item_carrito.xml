@@ -15,7 +15,9 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:background="@drawable/bg_image_placeholder"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitCenter"
+        android:contentDescription="@null"
+        android:importantForAccessibility="no" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -51,8 +53,9 @@
 
             <TextView
                 android:id="@+id/btn_restar"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/cd_restar"
                 android:background="@drawable/bg_search"
                 android:gravity="center"
                 android:text="—"
@@ -70,8 +73,9 @@
 
             <TextView
                 android:id="@+id/btn_sumar"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/cd_sumar"
                 android:background="@drawable/bg_search"
                 android:gravity="center"
                 android:text="+"
@@ -83,9 +87,14 @@
 
     <ImageView
         android:id="@+id/btn_quitar_item"
-        android:layout_width="22dp"
-        android:layout_height="22dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_gravity="top"
+        android:layout_marginTop="-12dp"
+        android:layout_marginEnd="-12dp"
+        android:padding="13dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/cd_quitar_carrito"
         android:src="@drawable/ic_delete"
         android:clickable="true"
         android:focusable="true"

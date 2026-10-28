@@ -18,6 +18,10 @@ import com.rfragancias.app.network.ApiClient
 import com.rfragancias.app.utils.mostrarToast
 import kotlinx.coroutines.launch
 import com.rfragancias.app.utils.mensajeDeError
+import com.rfragancias.app.utils.validarObligatorios
+import com.rfragancias.app.utils.validarNumeros
+import com.rfragancias.app.utils.limpiarErrorAlEscribir
+import com.rfragancias.app.utils.mostrarErrorCampo
 
 class ClientesActivity : AppCompatActivity() {
 
@@ -36,6 +40,12 @@ class ClientesActivity : AppCompatActivity() {
 
         swipeRefresh = findViewById(R.id.swipe_refresh)
         estadoVacio = findViewById(R.id.estado_vacio)
+        findViewById<View>(R.id.btn_reintentar).setOnClickListener { cargarClientes() }
+        // Alternativa con botón al gesto de deslizar para actualizar
+        toolbar.inflateMenu(R.menu.menu_lista)
+        toolbar.setOnMenuItemClickListener { item ->
+            if (item.itemId == R.id.accion_actualizar) { swipeRefresh.isRefreshing = true; cargarClientes(); true } else false
+        }
         progress = findViewById(R.id.progress_lista)
 
         val recycler = findViewById<RecyclerView>(R.id.recycler_lista)
@@ -84,12 +94,15 @@ class ClientesActivity : AppCompatActivity() {
         val editTelefono = vista.findViewById<TextInputEditText>(R.id.edit_telefono)
         val editEmail = vista.findViewById<TextInputEditText>(R.id.edit_email)
         val editNotas = vista.findViewById<TextInputEditText>(R.id.edit_notas)
+        listOf(editNombre, editEmail).forEach { it.limpiarErrorAlEscribir() }
 
         vista.findViewById<View>(R.id.btn_cancelar).setOnClickListener { dialog.dismiss() }
         vista.findViewById<View>(R.id.btn_guardar).setOnClickListener {
             val nombre = editNombre.text?.toString()?.trim().orEmpty()
-            if (nombre.isEmpty()) {
-                mostrarToast(getString(R.string.error_campos_obligatorios))
+            if (!validarObligatorios(editNombre)) return@setOnClickListener
+            if (editEmail.text?.toString()?.trim()?.let { it.isNotEmpty() && !android.util.Patterns.EMAIL_ADDRESS.matcher(it).matches() } == true) {
+                editEmail.mostrarErrorCampo(getString(R.string.error_correo_invalido))
+                editEmail.requestFocus()
                 return@setOnClickListener
             }
             val datos = mapOf(

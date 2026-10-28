@@ -28,8 +28,8 @@
                     android:orientation="vertical"
                     android:background="@color/surface"
                     android:paddingHorizontal="@dimen/padding_screen"
-                    android:paddingTop="28dp"
-                    android:paddingBottom="20dp">
+                    android:paddingTop="24dp"
+                    android:paddingBottom="24dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -40,7 +40,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="8dp"
                         android:text="@string/titulo_catalogo"
                         android:textSize="28sp"
                         style="@style/TextDisplay" />
@@ -62,20 +62,22 @@
                     android:background="@drawable/bg_search"
                     android:layout_marginHorizontal="@dimen/padding_screen"
                     android:layout_marginTop="@dimen/spacing_md"
-                    android:paddingHorizontal="14dp"
+                    android:paddingHorizontal="16dp"
                     android:layout_marginBottom="@dimen/spacing_sm">
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/ic_search" />
+                        android:src="@drawable/ic_search"
+                        android:contentDescription="@null"
+                        android:importantForAccessibility="no" />
 
                     <EditText
                         android:id="@+id/edit_buscar"
                         android:layout_width="0dp"
                         android:layout_height="48dp"
                         android:layout_weight="1"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="8dp"
                         android:background="@android:color/transparent"
                         android:hint="@string/hint_buscar"
                         android:textColorHint="@color/text_muted"
@@ -109,15 +111,40 @@
                     android:clipToPadding="false"
                     android:nestedScrollingEnabled="false" />
 
-                <TextView
+                <LinearLayout
                     android:id="@+id/texto_vacio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
-                    android:gravity="center"
-                    android:text="@string/catalogo_vacio"
-                    android:visibility="gone"
-                    style="@style/TextBodyMuted" />
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/padding_screen"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:src="@drawable/ic_perfume_placeholder"
+                        android:contentDescription="@null"
+                        android:importantForAccessibility="no"
+                        app:tint="@color/text_muted" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:gravity="center"
+                        android:text="@string/catalogo_vacio"
+                        style="@style/TextBodyMuted" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_reintentar_catalogo"
+                        style="@style/Widget.RFragancias.Button.Outlined"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:text="@string/btn_actualizar" />
+                </LinearLayout>
 
                 <!-- Contacto -->
                 <LinearLayout
@@ -137,7 +164,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="8dp"
                         android:text="¿Tienes dudas o quieres separar tu fragancia favorita?"
                         android:textSize="20sp"
                         style="@style/TextDisplay" />
@@ -146,7 +173,7 @@
                         android:id="@+id/btn_whatsapp_contacto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp"
+                        android:layout_marginTop="16dp"
                         android:backgroundTint="@color/whatsapp"
                         android:text="@string/btn_whatsapp"
                         android:textColor="@color/white"
@@ -163,8 +190,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="20dp"
+        android:layout_margin="24dp"
         android:src="@drawable/ic_whatsapp"
+        android:contentDescription="@string/cd_whatsapp"
         app:tint="@color/white"
         app:backgroundTint="@color/whatsapp" />
 

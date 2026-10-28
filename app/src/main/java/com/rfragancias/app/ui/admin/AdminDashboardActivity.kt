@@ -28,6 +28,13 @@ class AdminDashboardActivity : AppCompatActivity() {
         swipeRefresh = findViewById(R.id.swipe_refresh)
         swipeRefresh.setColorSchemeResources(R.color.primary)
         swipeRefresh.setOnRefreshListener { cargarResumen() }
+        // Alternativa con botón al gesto de deslizar para actualizar
+        findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar).apply {
+            inflateMenu(R.menu.menu_lista)
+            setOnMenuItemClickListener { item ->
+                if (item.itemId == R.id.accion_actualizar) { cargarResumen(); true } else false
+            }
+        }
 
         findViewById<TextView>(R.id.texto_bienvenida).text =
             "${getString(R.string.admin_bienvenida)}, ${sessionManager.nombre ?: "admin"}"

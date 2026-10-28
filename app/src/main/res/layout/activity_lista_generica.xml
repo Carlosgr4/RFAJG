@@ -32,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clipToPadding="false"
-                    android:paddingBottom="90dp"
+                    android:paddingBottom="88dp"
                     android:paddingTop="8dp" />
 
                 <LinearLayout
@@ -45,13 +45,30 @@
                     android:padding="32dp"
                     android:visibility="gone">
 
+                    <ImageView
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:src="@drawable/ic_box"
+                        android:contentDescription="@null"
+                        android:importantForAccessibility="no"
+                        app:tint="@color/text_muted" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"
                         android:gravity="center"
                         android:text="@string/sin_datos"
                         style="@style/TextBodyMuted" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_reintentar"
+                        style="@style/Widget.RFragancias.Button.Outlined"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/btn_actualizar" />
                 </LinearLayout>
 
                 <ProgressBar
@@ -69,8 +86,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="20dp"
+        android:layout_margin="24dp"
         android:src="@drawable/ic_add"
+        android:contentDescription="@string/cd_agregar"
         app:tint="@color/bg"
         app:backgroundTint="@color/primary" />
 

@@ -56,9 +56,9 @@
                 android:id="@+id/badge_genero_detalle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/bg_badge_success"
-                android:paddingHorizontal="10dp"
+                android:paddingHorizontal="8dp"
                 android:paddingVertical="4dp"
                 android:textColor="@color/text_primary"
                 android:textSize="12sp" />
@@ -79,7 +79,7 @@
                 android:id="@+id/texto_notas_detalle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="8dp"
                 android:textColor="@color/text_primary"
                 android:textSize="15sp"
                 android:lineSpacingExtra="4dp" />
@@ -88,7 +88,7 @@
                 android:id="@+id/btn_agregar_carrito_detalle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="24dp"
                 android:text="@string/btn_agregar_carrito"
                 app:icon="@drawable/ic_add" />
 
@@ -96,7 +96,7 @@
                 android:id="@+id/btn_whatsapp_detalle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:backgroundTint="@color/whatsapp"
                 android:text="@string/btn_whatsapp"
                 android:textColor="@color/white"

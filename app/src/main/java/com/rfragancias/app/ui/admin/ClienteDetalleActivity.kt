@@ -19,6 +19,10 @@ import com.rfragancias.app.utils.comoMoneda
 import com.rfragancias.app.utils.mostrarToast
 import kotlinx.coroutines.launch
 import com.rfragancias.app.utils.mensajeDeError
+import com.rfragancias.app.utils.validarObligatorios
+import com.rfragancias.app.utils.validarNumeros
+import com.rfragancias.app.utils.limpiarErrorAlEscribir
+import com.rfragancias.app.utils.mostrarErrorCampo
 
 class ClienteDetalleActivity : AppCompatActivity() {
 
@@ -44,6 +48,13 @@ class ClienteDetalleActivity : AppCompatActivity() {
         swipeRefresh = findViewById(R.id.swipe_refresh)
         swipeRefresh.setColorSchemeResources(R.color.primary)
         swipeRefresh.setOnRefreshListener { cargarHistorial() }
+        // Alternativa con botón al gesto de deslizar para actualizar
+        findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar).apply {
+            inflateMenu(R.menu.menu_lista)
+            setOnMenuItemClickListener { item ->
+                if (item.itemId == R.id.accion_actualizar) { cargarHistorial(); true } else false
+            }
+        }
 
         contenedorVentas = findViewById(R.id.contenedor_ventas)
         contenedorAbonos = findViewById(R.id.contenedor_abonos)
@@ -127,14 +138,13 @@ class ClienteDetalleActivity : AppCompatActivity() {
 
         val editMonto = vista.findViewById<TextInputEditText>(R.id.edit_monto)
         val editNota = vista.findViewById<TextInputEditText>(R.id.edit_nota)
+        editMonto.limpiarErrorAlEscribir()
 
         vista.findViewById<View>(R.id.btn_cancelar).setOnClickListener { dialog.dismiss() }
         vista.findViewById<View>(R.id.btn_guardar).setOnClickListener {
             val monto = editMonto.text?.toString()?.trim().orEmpty()
-            if (monto.isEmpty()) {
-                mostrarToast(getString(R.string.error_campos_obligatorios))
-                return@setOnClickListener
-            }
+            if (!validarObligatorios(editMonto)) return@setOnClickListener
+            if (!validarNumeros(editMonto)) return@setOnClickListener
             val datos = mapOf(
                 "monto" to monto,
                 "nota" to (editNota.text?.toString()?.trim().orEmpty())

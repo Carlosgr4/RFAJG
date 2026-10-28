@@ -2,6 +2,9 @@ package com.rfragancias.app.utils
 
 import android.content.Context
 import android.view.View
+import android.widget.EditText
+import androidx.core.widget.doAfterTextChanged
+import com.google.android.material.textfield.TextInputLayout
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.rfragancias.app.BuildConfig
@@ -55,4 +58,63 @@ fun Context.mensajeDeError(e: Throwable): String {
 
 fun View.mostrarSnackbar(mensaje: String) {
     Snackbar.make(this, mensaje, Snackbar.LENGTH_LONG).show()
+}
+
+/* ------------------------------------------------------------------
+ * Validación de formularios con el error junto al campo (auditoría #10)
+ * ------------------------------------------------------------------ */
+
+/** El TextInputLayout que envuelve a este campo, si lo hay. */
+private fun EditText.contenedorCampo(): TextInputLayout? {
+    var padre = parent
+    while (padre != null) {
+        if (padre is TextInputLayout) return padre
+        padre = padre.parent
+    }
+    return null
+}
+
+/** Muestra (o quita, con null) el mensaje de error debajo del campo. */
+fun EditText.mostrarErrorCampo(mensaje: String?) {
+    val contenedor = contenedorCampo()
+    if (contenedor != null) {
+        contenedor.error = mensaje
+        contenedor.isErrorEnabled = mensaje != null
+    } else {
+        error = mensaje
+    }
+}
+
+/** Borra el error del campo en cuanto el usuario vuelve a escribir. */
+fun EditText.limpiarErrorAlEscribir() {
+    doAfterTextChanged { mostrarErrorCampo(null) }
+}
+
+/**
+ * Revisa que los campos obligatorios tengan texto. Marca cada campo vacío
+ * con su error y lleva el foco al primero. Devuelve true si todo está bien.
+ */
+fun validarObligatorios(vararg campos: EditText): Boolean {
+    var primeroConError: EditText? = null
+    for (campo in campos) {
+        val vacio = campo.text?.toString()?.trim().isNullOrEmpty()
+        campo.mostrarErrorCampo(if (vacio) campo.context.getString(com.rfragancias.app.R.string.error_campo_obligatorio) else null)
+        if (vacio && primeroConError == null) primeroConError = campo
+    }
+    primeroConError?.requestFocus()
+    return primeroConError == null
+}
+
+/** Revisa que los campos (si tienen texto) sean números válidos. */
+fun validarNumeros(vararg campos: EditText): Boolean {
+    var primeroConError: EditText? = null
+    for (campo in campos) {
+        val texto = campo.text?.toString()?.trim().orEmpty()
+        if (texto.isNotEmpty() && texto.replace(',', '.').toDoubleOrNull() == null) {
+            campo.mostrarErrorCampo(campo.context.getString(com.rfragancias.app.R.string.error_numero_invalido))
+            if (primeroConError == null) primeroConError = campo
+        }
+    }
+    primeroConError?.requestFocus()
+    return primeroConError == null
 }

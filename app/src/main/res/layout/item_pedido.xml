@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
-    android:layout_marginBottom="10dp"
+    android:layout_marginBottom="8dp"
     android:orientation="vertical"
     android:background="@drawable/bg_card"
-    android:padding="14dp">
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -70,11 +70,15 @@
 
         <ImageButton
             android:id="@+id/btn_eliminar"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="-12dp"
+            android:padding="12dp"
+            android:scaleType="centerInside"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_delete"
+            android:contentDescription="@string/cd_eliminar_pedido"
             app:tint="@color/danger" />
     </LinearLayout>
 </LinearLayout>
