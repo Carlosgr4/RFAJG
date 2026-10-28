@@ -10,13 +10,18 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.rfragancias.app.BuildConfig
 import com.rfragancias.app.R
+import com.rfragancias.app.model.ROL_ADMIN
+import com.rfragancias.app.utils.mensajeDeError
+import com.rfragancias.app.utils.mostrarToast
 import com.rfragancias.app.network.ApiClient
 import com.rfragancias.app.network.SessionManager
 import com.rfragancias.app.ui.admin.AdminDashboardActivity
 import com.rfragancias.app.ui.auth.LoginActivity
 import com.rfragancias.app.ui.catalogo.CarritoFragment
 import com.rfragancias.app.ui.catalogo.CatalogoFragment
+import com.rfragancias.app.ui.ubicacion.UbicacionFragment
 import kotlinx.coroutines.launch
 
 /**
@@ -67,6 +72,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_carrito -> {
                     mostrarFragmento(CarritoFragment())
+                    true
+                }
+                R.id.nav_ubicacion -> {
+                    mostrarFragmento(UbicacionFragment())
                     true
                 }
                 R.id.nav_admin -> {
@@ -131,6 +140,28 @@ class MainActivity : AppCompatActivity() {
      * dispositivo). Mientras responde usamos lo que sabemos localmente.
      */
     private fun irAAdmin() {
+        if (BuildConfig.USAR_FIREBASE) {
+            // Con Firebase confirmamos el rol real de la cuenta conectada antes
+            // de abrir el panel: así no se muestra el panel de admin a una
+            // sesión de cliente (lo que haría fallar cada guardado).
+            lifecycleScope.launch {
+                try {
+                    val sesion = ApiClient.api.session().body()
+                    if (sesion?.autenticado == true && sesion.rol == ROL_ADMIN) {
+                        startActivity(Intent(this@MainActivity, AdminDashboardActivity::class.java))
+                    } else {
+                        mostrarToast(getString(R.string.error_no_admin))
+                        ApiClient.limpiarCookies()
+                        sessionManager.limpiar()
+                        irALogin()
+                    }
+                } catch (e: Exception) {
+                    mostrarToast(mensajeDeError(e))
+                }
+            }
+            return
+        }
+
         startActivity(Intent(this, AdminDashboardActivity::class.java))
 
         lifecycleScope.launch {

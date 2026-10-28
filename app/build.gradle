@@ -3,6 +3,35 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+// ---------------------------------------------------------------------------
+// FIREBASE: el plugin solo se aplica cuando existe app/google-services.json
+// (lo descargas desde la consola de Firebase). Así el proyecto compila
+// aunque todavía no lo hayas puesto.
+// ---------------------------------------------------------------------------
+if (file('google-services.json').exists()) {
+    apply plugin: 'com.google.gms.google-services'
+}
+
+// ---------------------------------------------------------------------------
+// GOOGLE MAPS: la API key se lee de local.properties (no se sube a GitHub):
+//     MAPS_API_KEY=AIza...
+// ---------------------------------------------------------------------------
+def localProps = new Properties()
+def localPropsFile = rootProject.file('local.properties')
+if (localPropsFile.exists()) {
+    localPropsFile.withInputStream { localProps.load(it) }
+}
+// Si no está en local.properties, se busca en maps.properties (raíz del proyecto).
+def mapsProps = new Properties()
+def mapsPropsFile = rootProject.file('maps.properties')
+if (mapsPropsFile.exists()) {
+    mapsPropsFile.withInputStream { mapsProps.load(it) }
+}
+def mapsApiKey = localProps.getProperty('MAPS_API_KEY', '')
+if (!mapsApiKey) {
+    mapsApiKey = mapsProps.getProperty('MAPS_API_KEY', '')
+}
+
 android {
     namespace 'com.rfragancias.app'
     compileSdk 34
@@ -22,6 +51,19 @@ android {
         // Cuando publiques la app, cambia este valor por tu URL de Render,
         // por ejemplo: "https://rfragancias.onrender.com/"
         buildConfigField "String", "BASE_URL", "\"http://10.0.2.2:3000/\""
+
+        // true  -> la app guarda y lee todo en Firebase (Auth + Firestore + Storage)
+        // false -> la app usa el servidor Node/Express de BASE_URL, como antes
+        buildConfigField "boolean", "USAR_FIREBASE", "true"
+
+        // Usuario administrador en Firebase Authentication.
+        // En el login se escribe solo "admin" (o el correo completo).
+        buildConfigField "String", "ADMIN_EMAIL", "\"admin@rfragancias.app\""
+
+        // API key de Google Maps (desde local.properties)
+        manifestPlaceholders = [MAPS_API_KEY: mapsApiKey]
+        def mapsKeyConfigurada = mapsApiKey != null && mapsApiKey.startsWith("AIza")
+        buildConfigField("boolean", "MAPS_KEY_CONFIGURADA", mapsKeyConfigurada ? "true" : "false")
     }
 
     buildTypes {
@@ -71,6 +113,16 @@ dependencies {
 
     // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3'
+
+    // Firebase (base de datos Firestore, inicio de sesión y fotos)
+    implementation platform('com.google.firebase:firebase-bom:33.7.0')
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-storage'
+
+    // Google Maps (ubicación del local)
+    implementation 'com.google.android.gms:play-services-maps:18.2.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

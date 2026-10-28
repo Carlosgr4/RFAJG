@@ -19,6 +19,7 @@ import com.rfragancias.app.network.ApiClient
 import com.rfragancias.app.network.SessionManager
 import com.rfragancias.app.utils.mostrarSnackbar
 import kotlinx.coroutines.launch
+import com.rfragancias.app.utils.mensajeDeError
 
 class CatalogoFragment : Fragment(R.layout.fragment_catalogo) {
 
@@ -112,7 +113,7 @@ class CatalogoFragment : Fragment(R.layout.fragment_catalogo) {
                 adapter.actualizar(lista)
                 textoVacio.visibility = if (lista.isEmpty()) View.VISIBLE else View.GONE
             } catch (e: Exception) {
-                view?.mostrarSnackbar(getString(R.string.error_conexion))
+                view?.mostrarSnackbar(requireContext().mensajeDeError(e))
             } finally {
                 swipeRefresh.isRefreshing = false
             }

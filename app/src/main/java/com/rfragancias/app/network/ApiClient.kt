@@ -48,11 +48,28 @@ object ApiClient {
         }
     }
 
+    /**
+     * Fuente de datos de toda la app.
+     *  - USAR_FIREBASE = true  -> Firebase (Auth + Firestore + Storage)
+     *  - USAR_FIREBASE = false -> servidor Node/Express en BASE_URL (Retrofit)
+     * Se cambia en app/build.gradle.
+     */
     val api: ApiService
-        get() = retrofit?.create(ApiService::class.java)
-            ?: throw IllegalStateException("ApiClient.init(context) debe llamarse antes de usar la API")
+        get() = if (BuildConfig.USAR_FIREBASE) {
+            FirebaseApiService
+        } else {
+            retrofit?.create(ApiService::class.java)
+                ?: throw IllegalStateException("ApiClient.init(context) debe llamarse antes de usar la API")
+        }
 
     fun limpiarCookies() {
         cookieJar?.limpiar()
+        if (BuildConfig.USAR_FIREBASE) {
+            try {
+                com.google.firebase.auth.FirebaseAuth.getInstance().signOut()
+            } catch (_: Exception) {
+                // Firebase sin configurar: no hay sesión que cerrar.
+            }
+        }
     }
 }

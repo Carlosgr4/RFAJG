@@ -13,6 +13,7 @@ import com.rfragancias.app.network.SessionManager
 import com.rfragancias.app.utils.comoMoneda
 import com.rfragancias.app.utils.mostrarToast
 import kotlinx.coroutines.launch
+import com.rfragancias.app.utils.mensajeDeError
 
 class AdminDashboardActivity : AppCompatActivity() {
 
@@ -89,7 +90,7 @@ class AdminDashboardActivity : AppCompatActivity() {
                         .findViewById<TextView>(R.id.stat_valor).text = "${resumen?.stockBajo ?: 0}"
                 }
             } catch (e: Exception) {
-                mostrarToast(getString(R.string.error_conexion))
+                mostrarToast(mensajeDeError(e))
             } finally {
                 swipeRefresh.isRefreshing = false
             }

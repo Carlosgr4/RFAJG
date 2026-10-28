@@ -25,6 +25,7 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.FileOutputStream
+import com.rfragancias.app.utils.mensajeDeError
 
 class PerfumeFormActivity : AppCompatActivity() {
 
@@ -108,7 +109,7 @@ class PerfumeFormActivity : AppCompatActivity() {
                         .into(imgPreview)
                 }
             } catch (e: Exception) {
-                mostrarToast(getString(R.string.error_conexion))
+                mostrarToast(mensajeDeError(e))
             } finally {
                 progress.visibility = View.GONE
             }
@@ -158,7 +159,7 @@ class PerfumeFormActivity : AppCompatActivity() {
                     mostrarToast(getString(R.string.error_generico))
                 }
             } catch (e: Exception) {
-                mostrarToast(getString(R.string.error_conexion))
+                mostrarToast(mensajeDeError(e))
             } finally {
                 progress.visibility = View.GONE
                 btnGuardar.isEnabled = true

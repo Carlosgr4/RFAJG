@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "287179757164",
+    "project_id": "rfragancias",
+    "storage_bucket": "rfragancias.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:287179757164:android:1ce43a1d9f4ab03781ea49",
+        "android_client_info": {
+          "package_name": "com.rfragancias.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCd4T22VVu3XA8-yl1f3oct5BTWzo4lS0o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

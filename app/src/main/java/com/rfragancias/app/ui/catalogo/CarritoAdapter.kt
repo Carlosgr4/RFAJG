@@ -60,7 +60,7 @@ class CarritoAdapter(
                 .load(urlImagenCompleta(item.perfume.imagenUrl))
                 .placeholder(R.drawable.ic_perfume_placeholder)
                 .error(R.drawable.ic_perfume_placeholder)
-                .centerCrop()
+                .fitCenter()
                 .into(img)
 
             btnSumar.setOnClickListener { alSumar(item) }

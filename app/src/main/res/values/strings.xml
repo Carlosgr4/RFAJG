@@ -6,6 +6,22 @@
     <string name="nav_catalogo">Catálogo</string>
     <string name="nav_admin">Admin</string>
     <string name="nav_carrito">Carrito</string>
+    <string name="nav_ubicacion">Ubicación</string>
+
+    <!-- Ubicación del local (Google Maps)
+         ⚠ CAMBIA ESTOS DATOS por los reales de la perfumería.
+         Para sacar latitud/longitud: abre Google Maps, mantén presionado
+         sobre el local y copia los dos números que aparecen. -->
+    <string name="local_nombre">R FRAGANCIAS</string>
+    <string name="local_direccion">Centro, Aguachica, Cesar</string>
+    <string name="local_horario">Escríbenos por WhatsApp para confirmar horarios de atención.</string>
+    <string name="local_latitud" translatable="false">8.3089</string>
+    <string name="local_longitud" translatable="false">-73.6160</string>
+    <string name="eyebrow_ubicacion">Visítanos</string>
+    <string name="titulo_ubicacion">¿Dónde estamos?</string>
+    <string name="btn_como_llegar">Cómo llegar</string>
+    <string name="btn_abrir_maps">Abrir en Google Maps</string>
+    <string name="mapa_sin_api_key">El mapa aparecerá aquí cuando se configure la API key de Google Maps (MAPS_API_KEY en local.properties).</string>
 
     <!-- Catálogo -->
     <string name="eyebrow_catalogo">Perfumería de autor</string>
@@ -27,6 +43,7 @@
     <string name="hint_usuario">Correo o usuario</string>
     <string name="hint_clave">Contraseña</string>
     <string name="btn_ingresar">Ingresar</string>
+    <string name="login_pie">R FRAGANCIAS · Aguachica, Cesar</string>
     <string name="error_credenciales">Usuario/correo o contraseña incorrectos</string>
     <string name="error_campos_obligatorios">Todos los campos son obligatorios</string>
     <string name="link_crear_cuenta">¿No tienes cuenta? Regístrate</string>
@@ -111,7 +128,8 @@
     <string name="aceptar">Aceptar</string>
     <string name="cargando">Cargando…</string>
     <string name="error_generico">Ocurrió un error. Intenta de nuevo.</string>
-    <string name="error_conexion">No se pudo conectar con el servidor. Revisa la URL del backend y tu conexión.</string>
+    <string name="error_conexion">No se pudo conectar. Revisa tu conexión a internet.</string>
+    <string name="error_no_admin">Esta sesión no es de administrador. Inicia sesión con el usuario admin.</string>
     <string name="sin_datos">Todavía no hay información aquí.</string>
     <string name="agregar">Agregar</string>
 

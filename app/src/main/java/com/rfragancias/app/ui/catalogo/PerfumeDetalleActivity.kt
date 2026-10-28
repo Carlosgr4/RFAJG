@@ -18,6 +18,7 @@ import com.rfragancias.app.utils.comoMoneda
 import com.rfragancias.app.utils.mostrarToast
 import com.rfragancias.app.utils.urlImagenCompleta
 import kotlinx.coroutines.launch
+import com.rfragancias.app.utils.mensajeDeError
 
 class PerfumeDetalleActivity : AppCompatActivity() {
 
@@ -62,6 +63,7 @@ class PerfumeDetalleActivity : AppCompatActivity() {
                     .load(urlImagenCompleta(perfume.imagenUrl))
                     .placeholder(R.drawable.ic_perfume_placeholder)
                     .error(R.drawable.ic_perfume_placeholder)
+                    .fitCenter()
                     .into(findViewById<ImageView>(R.id.img_detalle))
 
                 val btnAgregarCarrito = findViewById<MaterialButton>(R.id.btn_agregar_carrito_detalle)
@@ -81,7 +83,7 @@ class PerfumeDetalleActivity : AppCompatActivity() {
                     startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://wa.me/$numero?text=$mensaje")))
                 }
             } catch (e: Exception) {
-                mostrarToast(getString(R.string.error_conexion))
+                mostrarToast(mensajeDeError(e))
                 finish()
             }
         }

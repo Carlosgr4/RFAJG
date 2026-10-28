@@ -1,0 +1,53 @@
+rules_version = '2';
+
+// Reglas de seguridad de Cloud Firestore para R FRAGANCIAS.
+// Cópialas en: Consola de Firebase > Firestore Database > Reglas > Publicar.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // El administrador es la cuenta admin@rfragancias.app
+    // (debe coincidir con ADMIN_EMAIL en app/build.gradle).
+    function esAdmin() {
+      return request.auth != null
+        && request.auth.token.email == 'admin@rfragancias.app';
+    }
+    function logueado() {
+      return request.auth != null;
+    }
+
+    // Catálogo: cualquiera con sesión lo ve; solo el admin lo modifica.
+    match /perfumes/{id} {
+      allow read: if logueado();
+      allow write: if esAdmin();
+    }
+
+    // Clientes: el admin gestiona todo; un cliente nuevo puede crear su
+    // propia ficha al registrarse y leerla después.
+    match /clientes/{id} {
+      allow read: if esAdmin()
+        || (logueado() && resource.data.uid == request.auth.uid);
+      allow create: if esAdmin()
+        || (logueado() && request.resource.data.uid == request.auth.uid);
+      allow update, delete: if esAdmin();
+    }
+
+    // Perfil con el rol de cada cuenta. Nadie puede darse rol "admin"
+    // salvo la cuenta del administrador.
+    match /usuarios/{uid} {
+      allow read: if esAdmin() || (logueado() && request.auth.uid == uid);
+      allow create, update: if logueado() && request.auth.uid == uid
+        && (request.resource.data.rol == 'cliente' || esAdmin());
+      allow delete: if esAdmin();
+    }
+
+    // Contadores para los IDs consecutivos (los usa el registro de clientes).
+    match /contadores/{coleccion} {
+      allow read, write: if logueado();
+    }
+
+    // Información interna del negocio: solo el administrador.
+    match /ventas/{id}   { allow read, write: if esAdmin(); }
+    match /abonos/{id}   { allow read, write: if esAdmin(); }
+    match /pedidos/{id}  { allow read, write: if esAdmin(); }
+  }
+}

@@ -15,6 +15,7 @@ import com.rfragancias.app.ui.MainActivity
 import kotlinx.coroutines.launch
 import android.content.Intent
 import android.util.Patterns
+import com.rfragancias.app.utils.mensajeDeError
 
 /**
  * Registro de un cliente nuevo. Pide nombre, teléfono, correo y
@@ -85,7 +86,7 @@ class RegistroActivity : AppCompatActivity() {
                         mostrarError(textoError, getString(R.string.error_registro))
                     }
                 } catch (e: Exception) {
-                    mostrarError(textoError, getString(R.string.error_conexion))
+                    mostrarError(textoError, mensajeDeError(e))
                 } finally {
                     progress.visibility = View.GONE
                     btnCrear.isEnabled = true

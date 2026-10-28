@@ -16,6 +16,7 @@ import com.rfragancias.app.model.Pedido
 import com.rfragancias.app.network.ApiClient
 import com.rfragancias.app.utils.mostrarToast
 import kotlinx.coroutines.launch
+import com.rfragancias.app.utils.mensajeDeError
 
 class PedidosActivity : AppCompatActivity() {
 
@@ -63,7 +64,7 @@ class PedidosActivity : AppCompatActivity() {
                 adapter.actualizar(lista)
                 estadoVacio.visibility = if (lista.isEmpty()) View.VISIBLE else View.GONE
             } catch (e: Exception) {
-                mostrarToast(getString(R.string.error_conexion))
+                mostrarToast(mensajeDeError(e))
             } finally {
                 progress.visibility = View.GONE
                 swipeRefresh.isRefreshing = false
@@ -89,7 +90,7 @@ class PedidosActivity : AppCompatActivity() {
                     mostrarToast(getString(R.string.error_generico))
                 }
             } catch (e: Exception) {
-                mostrarToast(getString(R.string.error_conexion))
+                mostrarToast(mensajeDeError(e))
             }
         }
     }

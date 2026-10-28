@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Encabezado, igual que Catálogo y Carrito -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/surface"
+            android:paddingHorizontal="@dimen/padding_screen"
+            android:paddingTop="28dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/eyebrow_ubicacion"
+                style="@style/TextEyebrow" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/titulo_ubicacion"
+                style="@style/TextDisplay" />
+        </LinearLayout>
+
+        <!-- Mapa de Google -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="@dimen/padding_screen"
+            android:background="@drawable/bg_card">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/contenedor_mapa"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/texto_sin_mapa"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="@dimen/padding_card"
+                android:text="@string/mapa_sin_api_key"
+                android:visibility="gone"
+                style="@style/TextBodyMuted" />
+        </FrameLayout>
+
+        <!-- Tarjeta con la dirección -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/padding_screen"
+            android:background="@drawable/bg_card"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_card">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/local_nombre"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/texto_direccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_location"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="@string/local_direccion"
+                android:textColor="@color/text_primary"
+                android:textIsSelectable="true"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/local_horario"
+                style="@style/TextBodyMuted" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_como_llegar"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="@dimen/spacing_md"
+                android:text="@string/btn_como_llegar"
+                app:icon="@drawable/ic_directions"
+                app:iconTint="@color/bg" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_abrir_maps"
+                style="@style/Widget.RFragancias.Button.Outlined"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:text="@string/btn_abrir_maps" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_lg" />
+    </LinearLayout>
+</ScrollView>

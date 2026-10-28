@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import com.rfragancias.app.BuildConfig
 import com.rfragancias.app.R
 import com.rfragancias.app.model.LoginRequest
 import com.rfragancias.app.model.ROL_ADMIN
@@ -15,6 +16,7 @@ import com.rfragancias.app.network.ApiClient
 import com.rfragancias.app.network.SessionManager
 import com.rfragancias.app.ui.MainActivity
 import kotlinx.coroutines.launch
+import com.rfragancias.app.utils.mensajeDeError
 
 /**
  * Pantalla de inicio de la app. Un solo formulario sirve tanto para
@@ -30,6 +32,13 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         sessionManager = SessionManager(this)
+
+        // Con Firebase, la sesión local solo vale si Firebase Auth también
+        // tiene un usuario activo (por ejemplo, borra la sesión del antiguo
+        // acceso de prueba "admin/admin").
+        if (BuildConfig.USAR_FIREBASE && sessionManager.estaLogueado && !hayUsuarioFirebase()) {
+            sessionManager.limpiar()
+        }
 
         // Si ya hay sesión guardada localmente, saltamos directo a la app.
         if (sessionManager.estaLogueado) {
@@ -60,13 +69,16 @@ class LoginActivity : AppCompatActivity() {
             }
 
             // --- BYPASS LOCAL PARA DESARROLLO ---
-            if (usuario == "admin" && clave == "admin") {
+            // Solo funciona en modo servidor local. Con Firebase activo se usa
+            // el login real, porque Firestore exige una sesión válida para
+            // guardar datos.
+            if (!BuildConfig.USAR_FIREBASE && usuario == "admin" && clave == "admin") {
                 sessionManager.guardarSesion(ROL_ADMIN, "Admin Local", -1)
                 irAInicio()
                 finish()
                 return@setOnClickListener
             }
-            if (usuario == "user" && clave == "user") {
+            if (!BuildConfig.USAR_FIREBASE && usuario == "user" && clave == "user") {
                 sessionManager.guardarSesion(ROL_CLIENTE, "Usuario Local", 1)
                 irAInicio()
                 finish()
@@ -91,7 +103,7 @@ class LoginActivity : AppCompatActivity() {
                         textoError.visibility = View.VISIBLE
                     }
                 } catch (e: Exception) {
-                    textoError.text = getString(R.string.error_conexion)
+                    textoError.text = mensajeDeError(e)
                     textoError.visibility = View.VISIBLE
                 } finally {
                     progress.visibility = View.GONE
@@ -99,6 +111,12 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun hayUsuarioFirebase(): Boolean = try {
+        com.google.firebase.auth.FirebaseAuth.getInstance().currentUser != null
+    } catch (_: Exception) {
+        false // Firebase todavía sin configurar (falta google-services.json)
     }
 
     private fun irAInicio() {

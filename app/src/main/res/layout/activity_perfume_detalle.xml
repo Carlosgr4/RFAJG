@@ -23,9 +23,11 @@
         <ImageView
             android:id="@+id/img_detalle"
             android:layout_width="match_parent"
-            android:layout_height="320dp"
-            android:background="@color/surface_light"
-            android:scaleType="centerCrop" />
+            android:layout_height="380dp"
+            android:background="@color/bg"
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/titulo_perfume_detalle" />
 
         <LinearLayout
             android:layout_width="match_parent"

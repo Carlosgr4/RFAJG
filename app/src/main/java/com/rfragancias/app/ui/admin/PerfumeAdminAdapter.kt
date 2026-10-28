@@ -40,7 +40,7 @@ class PerfumeAdminAdapter(
             .load(urlImagenCompleta(perfume.imagenUrl))
             .placeholder(R.drawable.ic_perfume_placeholder)
             .error(R.drawable.ic_perfume_placeholder)
-            .centerCrop()
+            .fitCenter()
             .into(holder.img)
 
         holder.itemView.setOnClickListener { alEditar(perfume) }

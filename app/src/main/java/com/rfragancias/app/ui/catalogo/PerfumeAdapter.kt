@@ -53,7 +53,7 @@ class PerfumeAdapter(
                 .load(urlImagenCompleta(perfume.imagenUrl))
                 .placeholder(R.drawable.ic_perfume_placeholder)
                 .error(R.drawable.ic_perfume_placeholder)
-                .centerCrop()
+                .fitCenter()
                 .into(img)
 
             itemView.setOnClickListener { alHacerClick(perfume) }

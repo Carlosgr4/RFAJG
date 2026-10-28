@@ -2,3 +2,6 @@
 /.gradle/
 /app/build/
 /app/build/intermediates/javac/debug/classes/
+# Claves privadas
+maps.properties
+local.properties

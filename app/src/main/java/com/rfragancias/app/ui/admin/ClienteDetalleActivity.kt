@@ -18,6 +18,7 @@ import com.rfragancias.app.network.ApiClient
 import com.rfragancias.app.utils.comoMoneda
 import com.rfragancias.app.utils.mostrarToast
 import kotlinx.coroutines.launch
+import com.rfragancias.app.utils.mensajeDeError
 
 class ClienteDetalleActivity : AppCompatActivity() {
 
@@ -75,7 +76,7 @@ class ClienteDetalleActivity : AppCompatActivity() {
                     mostrarToast(getString(R.string.error_generico))
                 }
             } catch (e: Exception) {
-                mostrarToast(getString(R.string.error_conexion))
+                mostrarToast(mensajeDeError(e))
             } finally {
                 swipeRefresh.isRefreshing = false
             }
@@ -148,7 +149,7 @@ class ClienteDetalleActivity : AppCompatActivity() {
                         mostrarToast(getString(R.string.error_generico))
                     }
                 } catch (e: Exception) {
-                    mostrarToast(getString(R.string.error_conexion))
+                    mostrarToast(mensajeDeError(e))
                 }
             }
         }

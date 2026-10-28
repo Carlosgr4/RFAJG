@@ -14,6 +14,8 @@ import java.util.Locale
  */
 fun urlImagenCompleta(ruta: String?): String? {
     if (ruta.isNullOrBlank()) return null
+    // Fotos guardadas dentro de Firestore ("data:image/jpeg;base64,...")
+    if (ruta.startsWith("data:")) return ruta
     if (ruta.startsWith("http://") || ruta.startsWith("https://")) return ruta
     val base = BuildConfig.BASE_URL.trimEnd('/')
     val relativa = if (ruta.startsWith("/")) ruta else "/$ruta"
@@ -28,7 +30,27 @@ fun Double.comoMoneda(): String {
 }
 
 fun Context.mostrarToast(mensaje: String) {
-    Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+    Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
+}
+
+/**
+ * Traduce un error de Firebase (o de red) a un mensaje claro en español,
+ * para que el usuario sepa qué pasó en lugar de un genérico "sin conexión".
+ */
+fun Context.mensajeDeError(e: Throwable): String {
+    android.util.Log.e("RFragancias", "Error en la operación", e)
+    val firestore = e as? com.google.firebase.firestore.FirebaseFirestoreException
+    return when {
+        firestore?.code == com.google.firebase.firestore.FirebaseFirestoreException.Code.PERMISSION_DENIED ->
+            "No tienes permiso para hacer esto. Cierra sesión y vuelve a entrar con la cuenta de administrador (usuario: admin)."
+        firestore?.code == com.google.firebase.firestore.FirebaseFirestoreException.Code.UNAVAILABLE ||
+            e is com.google.firebase.FirebaseNetworkException ||
+            e is java.io.IOException ->
+            "Sin conexión a internet. Revisa tu conexión e intenta de nuevo."
+        e is IllegalStateException && e.message?.contains("FirebaseApp") == true ->
+            "Firebase no está configurado en esta app (falta google-services.json)."
+        else -> "No se pudo completar la operación: ${e.message ?: e.javaClass.simpleName}"
+    }
 }
 
 fun View.mostrarSnackbar(mensaje: String) {
